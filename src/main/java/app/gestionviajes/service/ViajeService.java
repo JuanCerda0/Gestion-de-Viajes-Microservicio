@@ -5,6 +5,7 @@ import app.gestionviajes.repository.ViajeRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ViajeService {
@@ -36,17 +37,17 @@ public class ViajeService {
         
         viaje.setFechaInicio(LocalDateTime.now());
         
-        return repository.save(Viaje);
+        return repository.save(viaje);
     }
     
-    public Viaje finalizarViaje(Long id, Double costoFinal, Integer tiempoReal) {
+    public Viaje finalizarViaje(Long id, Double costoFinal, Integer tiempoFinal) {
         
         Viaje viaje = obtenerViaje(id); 
-        Viaje.setEstado("FINALIZADO");
+        viaje.setEstado("FINALIZADO");
         
         viaje.setFechaFin(LocalDateTime.now());
         viaje.setCostoFinal(costoFinal);
-        viaje.setTiempoReal(tiempoReal);
+        viaje.setTiempoFinal(tiempoFinal);
         
         return repository.save(viaje);
     }
