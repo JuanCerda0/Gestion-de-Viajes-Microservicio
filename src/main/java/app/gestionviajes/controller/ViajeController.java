@@ -1,5 +1,6 @@
 package app.gestionviajes.controller;
 
+import app.gestionviajes.dto.FinalizarViajeRequest;
 import app.gestionviajes.model.Viaje;
 import app.gestionviajes.service.ViajeService;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,11 @@ public class ViajeController {
     @PutMapping("/{id}/iniciar")
     public Viaje iniciar(@PathVariable Long id) {
         return service.iniciarViaje(id);
+    }
+
+    @PutMapping("/{id}/finalizar")
+    public Viaje finalizar(@PathVariable Long id, @RequestBody FinalizarViajeRequest request) {
+        return service.finalizarViaje(id, request.getCostoFinal(), request.getTiempoFinal());
     }
 
     @PutMapping("/{id}/cancelar")
